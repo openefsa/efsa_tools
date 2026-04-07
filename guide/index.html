@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://openefsa.github.io/efsa_tools/guide/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Introduction to efsa_tools - efsa_tools</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">efsa_tools</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">efsa_tools</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Introduction to efsa_tools</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/openefsa/efsa_tools/edit/master/docs/guide.md" class="nav-link"><i class="fa-brands fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#introduction-to-efsa_tools" class="nav-link">Introduction to efsa_tools</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#overview" class="nav-link">Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#basic-usage" class="nav-link">Basic usage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#dropping-empty-rows-and-columns-from-a-data-frame" class="nav-link">Dropping empty rows and columns from a data frame</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#enriching-a-data-frame-with-an-efsas-catalogue" class="nav-link">Enriching a data frame with an EFSA's catalogue</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#removing-replicated-columns-from-a-data-frame" class="nav-link">Removing replicated columns from a data frame</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#implementing-a-simple-slowly-changing-dimension-type-2-sscd2" class="nav-link">Implementing a "Simple" Slowly Changing Dimension Type 2 (SSCD2)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#implementing-a-slowly-changing-dimension-type-2-scd2" class="nav-link">Implementing a Slowly Changing Dimension Type 2 (SCD2)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="introduction-to-efsa_tools">Introduction to efsa_tools</h1>
+<h2 id="overview">Overview</h2>
+<p>The <strong>efsa_tools</strong> package brings together all the functions developed for
+EFSA's ad hoc data collections, providing tools for dataset operations as well
+as utilities designed to preserve data history.</p>
+<p>The package is intended for researchers, analysts, and practitioners who
+require convenient programmatic access to data collection utilities.</p>
+<h2 id="installation">Installation</h2>
+<h3 id="from-pypi">From PyPi</h3>
+<pre><code>pip install efsa_tools
+</code></pre>
+<h3 id="development-version">Development version</h3>
+<p>To install the latest development version:</p>
+<pre><code>pip install git+https://github.com/openefsa/efsa_tools.git
+</code></pre>
+<h2 id="basic-usage">Basic usage</h2>
+<p>The main purpose of <em>efsa_tools</em> is to provide tools for managing datasets and
+tracking data history within the context of data collections.</p>
+<p>Below are examples demonstrating how to use the functions in this package.
+First, load the <em>efsa_tools</em> package:</p>
+<pre><code class="language-python">from efsa_tools import *
+</code></pre>
+<p>To explore the arguments and usage of a specific function, you can run:</p>
+<pre><code class="language-python">help(function_name)
+</code></pre>
+<p>This will show the full documentation for the function, including its
+arguments, return values, and usage examples.</p>
+<p>For example, if you are working with the <code>SCD2()</code> function, you can check its
+documentation with:</p>
+<pre><code class="language-python">help(SCD2)
+</code></pre>
+<h2 id="dropping-empty-rows-and-columns-from-a-data-frame">Dropping empty rows and columns from a data frame</h2>
+<p>If a data frame contain empty rows or columns, you can remove them using the
+<code>drop_empty()</code> function, as follows:</p>
+<pre><code class="language-python">iris_dropped = drop_empty(iris)
+
+print(iris_dropped.head())
+</code></pre>
+<h2 id="enriching-a-data-frame-with-an-efsas-catalogue">Enriching a data frame with an EFSA's catalogue</h2>
+<p>The <code>enrich()</code> function enables the augmentation of a data frame using
+information stored in an EFSA's catalogue. It requires specifying the column
+used to join the two datasets, as well as the name of the column that will
+contain the enriched information (namely, the 'NAME' field of EFSA's
+catalogues).</p>
+<pre><code class="language-python">enriched_data_frame = enrich(
+  dataframe=dataframe_,
+  catalogue=CV_MTX_,
+  join_by=&quot;CODE&quot;,
+  enriched_column_name=&quot;enrichedColumn&quot;
+)
+
+print(enriched_data_frame.head())
+</code></pre>
+<h2 id="removing-replicated-columns-from-a-data-frame">Removing replicated columns from a data frame</h2>
+<p>The <code>remove_replicated_columns()</code> function merges all the replicated columns in
+a data frame into a single column whose name includes the "_deduplicated"
+suffix. After the merge, the original replicated columns are removed from the
+data frame.</p>
+<p>In the following example, we present a data frame containing the columns
+<em>region_1</em>, <em>region_2</em>, ..., <em>region_n</em> with <em>n</em> &gt; 100. Using the
+<code>remove_replicated_columns()</code> function, these columns can be efficiently
+consolidated into a single <em>region_deduplicated</em> column, assuming that for each
+row only one of the <em>n</em> columns contains a meaningful (non-NA) value.</p>
+<pre><code class="language-python">iris[&quot;Species_1&quot;] = iris[&quot;Species&quot;]
+iris[&quot;Species_2&quot;] = iris[&quot;Species&quot;]
+iris.drop(columns=[&quot;Species&quot;], inplace=True)
+
+iris_deduplicated = remove_replicated_columns(
+    dataframe=iris,
+    prefix=&quot;Species_&quot;
+)
+
+print(iris_deduplicated.head())
+</code></pre>
+<h2 id="implementing-a-simple-slowly-changing-dimension-type-2-sscd2">Implementing a "Simple" Slowly Changing Dimension Type 2 (SSCD2)</h2>
+<p>The <code>SSCD2()</code> function makes it possible to preserve data history when new data
+becomes available by implementing a simplified version of Slowly Changing
+Dimension Type 2. It marks all records in the current data frame as inactive
+and appends the new data, flagging each newly added record as active.</p>
+<p>Unlike the <code>SCD2()</code> function, <code>SSCD2()</code> does not check which records have
+actually changed. Instead, it marks all existing records as inactive and treats
+all incoming records as new, setting the previous ones to inactive status even
+if they are still included in the updated dataset.</p>
+<p>An example of how to use the function is provided below:</p>
+<pre><code class="language-python">sscd2_dataframe = SSCD2(new_data=new_dataframe, current_data=old_dataframe)
+
+print(sscd2_dataframe.head()))
+</code></pre>
+<h2 id="implementing-a-slowly-changing-dimension-type-2-scd2">Implementing a Slowly Changing Dimension Type 2 (SCD2)</h2>
+<p>The <code>SCD2()</code> function makes it possible to preserve data history when new data 
+becomes available by implementing a Slowly Changing Dimension Type 2. It
+compares the current records with the new ones, marking as inactive any
+existing records that no longer appear in the updated dataset. Then, it flags
+as active any new records that are not present among the currently active data.</p>
+<p>Unlike the <code>SSCD2()</code> function, <code>SCD2()</code> checks which records have actually
+changed. It marks as inactive any existing records that no longer appear in the 
+updated dataset, and flags as active any new records that are not present among
+the currently active data.</p>
+<p>An example of how to use the function is provided below:</p>
+<pre><code class="language-python">scd2_dataframe = SCD2(new_data=new_dataframe, current_data=old_ataframe)
+
+print(scd2_dataframe.head())
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
