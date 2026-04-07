@@ -9,5 +9,5 @@ theme:
   name: mkdocs
 
 nav:
-  Home: 'index.md'
-  'Get started': 'guide.md'
+  - Home: 'index.md'
+  - 'Get started': 'guide.md'
