@@ -25,6 +25,7 @@ jobs:
       - name: Generate index.md from README.md
         run: |
           cp README.md docs/index.md
+          sed -i 's|docs/guide.md|guide/|g' docs/index.md
           mkdir docs/media
           cp media/logo.png docs/media/logo.png
 
