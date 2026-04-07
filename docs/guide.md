@@ -1,0 +1,151 @@
+# Introduction to efsa_tools
+
+## Overview
+
+The **efsa_tools** package brings together all the functions developed for
+EFSA's ad hoc data collections, providing tools for dataset operations as well
+as utilities designed to preserve data history.
+
+The package is intended for researchers, analysts, and practitioners who
+require convenient programmatic access to data collection utilities.
+
+## Installation
+
+### From PyPi
+
+```
+pip install efsa_tools
+```
+
+### Development version
+
+To install the latest development version:
+
+```
+pip install git+https://github.com/openefsa/efsa_tools.git
+```
+
+## Basic usage
+
+The main purpose of *efsa_tools* is to provide tools for managing datasets and
+tracking data history within the context of data collections.
+
+Below are examples demonstrating how to use the functions in this package.
+First, load the *efsa_tools* package:
+
+```python
+from efsa_tools import *
+```
+
+To explore the arguments and usage of a specific function, you can run:
+
+```python
+help(function_name)
+```
+
+This will show the full documentation for the function, including its
+arguments, return values, and usage examples.
+
+For example, if you are working with the `SCD2()` function, you can check its
+documentation with:
+
+```python
+help(SCD2)
+```
+
+## Dropping empty rows and columns from a data frame
+
+If a data frame contain empty rows or columns, you can remove them using the
+`drop_empty()` function, as follows:
+
+```python
+iris_dropped = drop_empty(iris)
+
+print(iris_dropped.head())
+```
+
+## Enriching a data frame with an EFSA's catalogue
+
+The `enrich()` function enables the augmentation of a data frame using
+information stored in an EFSA's catalogue. It requires specifying the column
+used to join the two datasets, as well as the name of the column that will
+contain the enriched information (namely, the 'NAME' field of EFSA's
+catalogues).
+
+```python
+enriched_data_frame = enrich(
+  dataframe=dataframe_,
+  catalogue=CV_MTX_,
+  join_by="CODE",
+  enriched_column_name="enrichedColumn"
+)
+
+print(enriched_data_frame.head())
+```
+
+## Removing replicated columns from a data frame
+
+The `remove_replicated_columns()` function merges all the replicated columns in
+a data frame into a single column whose name includes the "_deduplicated"
+suffix. After the merge, the original replicated columns are removed from the
+data frame.
+
+In the following example, we present a data frame containing the columns
+*region_1*, *region_2*, ..., *region_n* with *n* > 100. Using the
+`remove_replicated_columns()` function, these columns can be efficiently
+consolidated into a single *region_deduplicated* column, assuming that for each
+row only one of the *n* columns contains a meaningful (non-NA) value.
+
+```python
+iris["Species_1"] = iris["Species"]
+iris["Species_2"] = iris["Species"]
+iris.drop(columns=["Species"], inplace=True)
+
+iris_deduplicated = remove_replicated_columns(
+    dataframe=iris,
+    prefix="Species_"
+)
+
+print(iris_deduplicated.head())
+```
+
+## Implementing a "Simple" Slowly Changing Dimension Type 2 (SSCD2)
+
+The `SSCD2()` function makes it possible to preserve data history when new data
+becomes available by implementing a simplified version of Slowly Changing
+Dimension Type 2. It marks all records in the current data frame as inactive
+and appends the new data, flagging each newly added record as active.
+
+Unlike the `SCD2()` function, `SSCD2()` does not check which records have
+actually changed. Instead, it marks all existing records as inactive and treats
+all incoming records as new, setting the previous ones to inactive status even
+if they are still included in the updated dataset.
+
+An example of how to use the function is provided below:
+
+```python
+sscd2_dataframe = SSCD2(new_data=new_dataframe, current_data=old_dataframe)
+
+print(sscd2_dataframe.head()))
+```
+
+## Implementing a Slowly Changing Dimension Type 2 (SCD2)
+
+The `SCD2()` function makes it possible to preserve data history when new data 
+becomes available by implementing a Slowly Changing Dimension Type 2. It
+compares the current records with the new ones, marking as inactive any
+existing records that no longer appear in the updated dataset. Then, it flags
+as active any new records that are not present among the currently active data.
+
+Unlike the `SSCD2()` function, `SCD2()` checks which records have actually
+changed. It marks as inactive any existing records that no longer appear in the 
+updated dataset, and flags as active any new records that are not present among
+the currently active data.
+
+An example of how to use the function is provided below:
+
+```python
+scd2_dataframe = SCD2(new_data=new_dataframe, current_data=old_ataframe)
+
+print(scd2_dataframe.head())
+```
