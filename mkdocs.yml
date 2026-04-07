@@ -1,5 +1,7 @@
 site_name: efsa_tools
+site_description: EFSA ensemble of data collections tools
 site_url: https://openefsa.github.io/efsa_tools
+repo_url: https://github.com/openefsa/efsa_tools
 docs_dir: docs
 site_dir: site
 
