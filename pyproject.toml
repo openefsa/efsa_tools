@@ -29,7 +29,7 @@ dev = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/openefsa/efsa_tools"
+"Homepage" = "https://openefsa.github.io/efsa_tools/"
 "Repository" = "https://github.com/openefsa/efsa_tools"
 "Bug Tracker" = "https://github.com/openefsa/efsa_tools/issues"
 
