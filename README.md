@@ -36,7 +36,7 @@ from efsa_tools import *
 ```
 
 Basic usage examples and full documentation are available in the package
-[guide](docs/guide.md).
+[guide](https://openefsa.github.io/efsa_tools/guide/).
 
 ## Authors and maintainers
 
@@ -45,5 +45,5 @@ Basic usage examples and full documentation are available in the package
 
 ## Links
 
-- **Homepage**: [GitHub](https://github.com/openefsa/efsa_tools).
-- **Bug Tracker**: [Issues on GitHub](https://github.com/openefsa/efsa_tools/issues).
+- **Source code**: [GitHub - openefsa/efsa_tools](https://github.com/openefsa/efsa_tools).
+- **Bug tracker**: [Issues on GitHub](https://github.com/openefsa/efsa_tools/issues).
