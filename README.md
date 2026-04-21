@@ -11,6 +11,20 @@ as utilities designed to preserve data history.
 The package is intended for researchers, analysts, and practitioners who
 require convenient programmatic access to data collection utilities.
 
+During installation, the following packages developed by EFSA are also
+installed:
+- **eppoPynder** - [Website](https://openefsa.github.io/eppoPynder/) | [PyPI](https://pypi.org/project/eppoPynder/).
+- **pystiller** - [Website](https://openefsa.github.io/pystiller/) | [PyPI](https://pypi.org/project/pystiller/).
+
+These packages are not required to use **efsa_tools**, but are included for
+convenience and can be imported and used directly in the code if needed:
+
+```python
+import eppoPynder
+# and/or
+import pystiller
+```
+
 ## Installation
 
 ### From PyPi
