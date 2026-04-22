@@ -1,10 +1,10 @@
-# efsa_tools <img src="https://raw.githubusercontent.com/openefsa/efsa_tools/main/media/logo.png" height="140" align="right">
+# efsa-tools <img src="https://raw.githubusercontent.com/openefsa/efsa_tools/main/media/logo.png" height="140" align="right">
 
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![codecov](https://codecov.io/gh/openefsa/efsa_tools/branch/main/graph/badge.svg?token=0YQIJKISMA)](https://codecov.io/gh/openefsa/efsa_tools)
 
 ## Overview
 
-The **efsa_tools** package brings together all the functions developed for
+The **efsa-tools** package brings together all the functions developed for
 EFSA's ad hoc data collections, providing tools for dataset operations as well
 as utilities designed to preserve data history.
 
@@ -16,21 +16,21 @@ installed:
 - **eppoPynder** - [Website](https://openefsa.github.io/eppoPynder/) | [PyPI](https://pypi.org/project/eppoPynder/).
 - **pystiller** - [Website](https://openefsa.github.io/pystiller/) | [PyPI](https://pypi.org/project/pystiller/).
 
-These packages are not required to use **efsa_tools**, but are included for
+These packages are not required to use **efsa-tools**, but are included for
 convenience and can be imported and used directly in the code if needed:
 
 ```python
-import eppoPynder
+import eppopynder
 # and/or
 import pystiller
 ```
 
 ## Installation
 
-### From PyPi
+### From PyPI
 
 ```
-pip install efsa_tools
+pip install efsa-tools
 ```
 
 ### Development version
