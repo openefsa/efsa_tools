@@ -3,7 +3,7 @@ requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "efsa_tools"
+name = "efsa-tools"
 version = "1.0.0"
 description = "EFSA ensemble of data collections tools"
 readme = "README.md"
